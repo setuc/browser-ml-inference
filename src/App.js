@@ -95,8 +95,6 @@ class TextInputArea extends React.Component {
        placeholder={this.state.text} autoFocus onChange={this.handleChange}>
       </textarea>
        <div><font size="3">Inference Latency {this.state.latency} ms</font></div>
-      <div><font size="3">GitHub Repo: <a href="https://github.com/jobergum/browser-ml-inference">browser-ml-inference</a></font></div>
-      <div><font size="3">Model was trained on the <a href="https://ai.googleblog.com/2021/10/goemotions-dataset-for-fine-grained.html">GoEmotions</a> dataset.</font></div>
       </header>
     </div>   
     );
