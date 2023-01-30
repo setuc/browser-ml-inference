@@ -64,4 +64,4 @@ jobs:
           app-name: 'onnxinference'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_363C2610DD0E4B0EB0F979515EF771F6 }}
-          package: ./build
+          package: .
