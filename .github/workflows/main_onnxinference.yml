@@ -11,6 +11,8 @@ on:
 
 env:
   CI: false
+  AZURE_WEBAPP_PACKAGE_PATH: '.'
+  AZURE_WEBAPP_NAME: 'onnxinference'
   
 jobs:
   build:
@@ -26,42 +28,14 @@ jobs:
 
       - name: npm install, build, and test
         run: |
+          npm prune --production
           npm install
           npm run build --if-present
-          
-      - name: Zip the build directory
-        run: |
-          zip -r build.zip .
-        
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v2
-        with:
-          name: build.zip
-          path: build.zip
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v2
-        with:
-          name: build.zip
-          
-      - name: Unzip the build directory
-        run: |
-          unzip build.zip 
-          rm build.zip
           
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'onnxinference'
-          slot-name: 'Production'
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_363C2610DD0E4B0EB0F979515EF771F6 }}
-          package: .
+          package:  ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
