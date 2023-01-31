@@ -1,0 +1,5 @@
+{
+  "appService.zipIgnorePattern": ["node_modules{,/**}", ".vscode{,/**}"],
+  "appService.defaultWebAppToDeploy": "/subscriptions/f5f80e31-2fdd-4b74-93a3-bfa3a73f897f/AppServices/subscriptions/f5f80e31-2fdd-4b74-93a3-bfa3a73f897f/resourceGroups/client-pru/providers/Microsoft.Web/sites/onnxinference",
+  "appService.deploySubpath": "."
+}
